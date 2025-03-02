@@ -21,6 +21,10 @@ import "phoenix_html"
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
+import React from "react";
+import axios from "axios";
+import { createInertiaApp } from "@inertiajs/react";
+import { createRoot } from "react-dom/client";
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {
@@ -42,3 +46,13 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
+axios.defaults.xsrfHeaderName = "x-csrf-token";
+
+createInertiaApp({
+  resolve: async (name) => {
+    return await import(`./pages/${name}.jsx`);
+  },
+  setup({ App, el, props }) {
+    createRoot(el).render(<App {...props} />);
+  },
+});
