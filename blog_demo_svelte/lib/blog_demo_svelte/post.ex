@@ -2,6 +2,7 @@ defmodule BlogDemoSvelte.Post do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Jason.Encoder, only: [:id, :title, :author, :body]}
   schema "posts" do
     field :title, :string
     field :author, :string
