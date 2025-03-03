@@ -22,6 +22,8 @@ defmodule BlogDemoReactWeb.Router do
     get "/", PageController, :home
 
     get "/posts", PostController, :index
+    get "/posts/new", PostController, :new
+    post "/posts", PostController, :create
   end
 
   # Other scopes may use custom stacks.
