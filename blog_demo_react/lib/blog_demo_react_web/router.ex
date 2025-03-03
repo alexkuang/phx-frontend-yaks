@@ -20,6 +20,8 @@ defmodule BlogDemoReactWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    get "/posts", PostController, :index
   end
 
   # Other scopes may use custom stacks.

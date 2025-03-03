@@ -6,4 +6,11 @@ defmodule BlogDemoReact do
   Contexts are also responsible for managing your data, regardless
   if it comes from the database, an external API or others.
   """
+
+  alias BlogDemoReact.Post
+  alias BlogDemoReact.Repo
+
+  def list_posts() do
+    Repo.all(Post)
+  end
 end
