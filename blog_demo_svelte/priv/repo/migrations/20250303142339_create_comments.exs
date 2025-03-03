@@ -1,4 +1,4 @@
-defmodule BlogDemoReact.Repo.Migrations.CreateComments do
+defmodule BlogDemoSvelte.Repo.Migrations.CreateComments do
   use Ecto.Migration
 
   def change do
