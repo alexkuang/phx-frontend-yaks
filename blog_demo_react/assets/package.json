@@ -9,7 +9,6 @@
   "license": "ISC",
   "dependencies": {
     "@inertiajs/react": "^2.0.3",
-    "phx-live-state": "^0.12.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   }
