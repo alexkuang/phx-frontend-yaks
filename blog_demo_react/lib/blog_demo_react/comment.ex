@@ -2,10 +2,14 @@ defmodule BlogDemoReact.Comment do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias BlogDemoReact.Post
+
+  @derive {Jason.Encoder, only: [:id, :post_id, :author, :body, :inserted_at]}
   schema "comments" do
     field :author, :string
     field :body, :string
-    field :post_id, :id
+
+    belongs_to :post, Post
 
     timestamps(type: :utc_datetime)
   end

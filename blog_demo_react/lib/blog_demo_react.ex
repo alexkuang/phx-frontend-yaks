@@ -10,6 +10,8 @@ defmodule BlogDemoReact do
   alias BlogDemoReact.Post
   alias BlogDemoReact.Repo
 
+  import Ecto.Query, warn: false
+
   def list_posts() do
     Repo.all(Post)
   end
@@ -18,5 +20,17 @@ defmodule BlogDemoReact do
     %Post{}
     |> Post.changeset(attrs)
     |> Repo.insert()
+  end
+
+  def get_post!(id) do
+    Post
+    |> preload(:comments)
+    |> Repo.get!(id)
+  end
+
+  def get_post(id) do
+    Post
+    |> preload(:comments)
+    |> Repo.get(id)
   end
 end

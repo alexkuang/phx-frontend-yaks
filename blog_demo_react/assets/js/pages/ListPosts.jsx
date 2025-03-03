@@ -14,6 +14,11 @@ export default function ListPosts({ posts }) {
           <li key={post.id}>
             <div className="block text-sm/6 font-medium text-gray-900">{post.title} (by {post.author})</div>
             <div className="mt-1 text-gray-500">{post.body}</div>
+            <div className="py-2 text-sm font-medium">
+              <Link href={`/posts/${post.id}/comments`} className="text-indigo-600 hover:text-indigo-900">
+                view comments
+              </Link>
+            </div>
           </li>
         ))}
       </ul>
