@@ -25,6 +25,7 @@ import React from "react";
 import axios from "axios";
 import { createInertiaApp } from "@inertiajs/react";
 import { createRoot } from "react-dom/client";
+import "./live_state_socket.js"
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {
