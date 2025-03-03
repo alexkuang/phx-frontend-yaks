@@ -93,6 +93,8 @@ defmodule BlogDemoSvelteWeb do
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
 
+      import LiveSvelte
+
       # Routes generation with the ~p sigil
       unquote(verified_routes())
     end
