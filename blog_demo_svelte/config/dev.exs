@@ -25,7 +25,8 @@ config :blog_demo_svelte, BlogDemoSvelteWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "ZgJwXfDiaxlP9i1NaMPnbNG9aVXoDQMFy8mEu1662GVP0BRNX/WgN1TC1koUazxK",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:blog_demo_svelte, ~w(--sourcemap=inline --watch)]},
+    node: ["build.js", "--watch", cd: Path.expand("../assets", __DIR__)],
+    # esbuild: {Esbuild, :install_and_run, [:blog_demo_svelte, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:blog_demo_svelte, ~w(--watch)]}
   ]
 
