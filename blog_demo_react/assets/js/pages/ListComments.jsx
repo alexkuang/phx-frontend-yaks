@@ -1,7 +1,26 @@
 import React from 'react';
 import { Link } from '@inertiajs/react';
+import socket from "../comment_feed_socket.js";
 
-export default function ListComments({ comments, post }) {
+import { useEffect, useState } from 'react';
+
+export default function ListComments({ comments: initComments, post }) {
+  const [comments, setComments] = useState(initComments);
+
+  useEffect(() => {
+    const channel = socket.channel(`post:${post.id}`, {});
+
+    channel.on("new_comment", payload => {
+      // hacky dedup in case of race condition for new comments being added
+      setComments([... new Set([...comments, payload])])
+    })
+
+    channel.join()
+      .receive("ok", resp => { console.log("Joined successfully", resp) })
+      .receive("error", resp => { console.log("Unable to join", resp) });
+
+  }, [socket]);
+
   return (
     <div>
       <div>

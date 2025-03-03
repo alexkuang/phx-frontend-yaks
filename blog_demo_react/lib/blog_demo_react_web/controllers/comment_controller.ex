@@ -14,7 +14,9 @@ defmodule BlogDemoReactWeb.CommentController do
     params = Map.put(params, "author", Ecto.UUID.generate())
 
     case BlogDemoReact.create_comment(post.id, params) do
-      {:ok, _comment} ->
+      {:ok, comment} ->
+        publish_comment(comment)
+
         conn
         |> redirect(to: ~p"/posts/#{post_id}/comments")
 
@@ -32,5 +34,13 @@ defmodule BlogDemoReactWeb.CommentController do
     |> assign_prop(:post, post)
     |> assign_prop(:comments, post.comments)
     |> render_inertia("ListComments")
+  end
+
+  defp publish_comment(comment) do
+    BlogDemoReactWeb.Endpoint.broadcast!("post:#{comment.post_id}", "new_comment", %{
+      "id" => comment.id,
+      "body" => comment.body,
+      "author" => comment.author
+    })
   end
 end
