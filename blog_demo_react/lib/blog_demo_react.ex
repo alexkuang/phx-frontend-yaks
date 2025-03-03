@@ -7,6 +7,7 @@ defmodule BlogDemoReact do
   if it comes from the database, an external API or others.
   """
 
+  alias BlogDemoReact.Comment
   alias BlogDemoReact.Post
   alias BlogDemoReact.Repo
 
@@ -32,5 +33,11 @@ defmodule BlogDemoReact do
     Post
     |> preload(:comments)
     |> Repo.get(id)
+  end
+
+  def create_comment(post_id, attrs) do
+    %Comment{post_id: post_id}
+    |> Comment.changeset(attrs)
+    |> Repo.insert()
   end
 end
