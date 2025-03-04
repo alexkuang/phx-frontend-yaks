@@ -1,5 +1,15 @@
 <script>
-  const { post_id, post_comments } = $props();
+  import { onMount } from "svelte"
+  const { post_id, post_comments, live } = $props();
+
+  let comments = $state(post_comments)
+
+  onMount(() => {
+    live.handleEvent("new_comment", (payload) => {
+      // hacky dedup in case of race condition for new comments being added
+      comments = [... new Set([...comments, payload])]
+    });
+  });
 </script>
 
 <div>
@@ -13,7 +23,7 @@
     </a>
   </div>
   <ul role="list" class="flex flex-col gap-4 mt-8">
-    {#each post_comments as comment (comment.id)}
+    {#each comments as comment (comment.id)}
       <li>
         <div class="block text-sm/6 font-medium text-gray-900">{comment.author}</div>
         <div class="mt-1 text-gray-500">{comment.body}</div>

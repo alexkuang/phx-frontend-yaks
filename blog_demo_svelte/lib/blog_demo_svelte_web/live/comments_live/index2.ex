@@ -13,7 +13,7 @@ defmodule BlogDemoSvelteWeb.CommentsLive.Index2 do
   end
 
   @impl true
-  def handle_info({:new_comment, _comment}, socket) do
-    {:noreply, socket |> assign(:post, BlogDemoSvelte.get_post!(socket.assigns.post.id))}
+  def handle_info({:new_comment, comment}, socket) do
+    {:noreply, socket |> push_event("new_comment", comment)}
   end
 end
