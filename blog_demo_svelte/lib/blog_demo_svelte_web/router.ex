@@ -20,6 +20,7 @@ defmodule BlogDemoSvelteWeb.Router do
     get "/", PageController, :home
 
     live "/posts", PostsLive.Index, :index
+    live "/posts/new", PostsLive.Form, :new
   end
 
   # Other scopes may use custom stacks.
