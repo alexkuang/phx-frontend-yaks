@@ -2,10 +2,13 @@ defmodule BlogDemoSvelte.Comment do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias BlogDemoSvelte.Post
+
   schema "comments" do
     field :author, :string
     field :body, :string
-    field :post_id, :id
+
+    belongs_to :post, Post
 
     timestamps(type: :utc_datetime)
   end

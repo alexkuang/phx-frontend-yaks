@@ -1,0 +1,7 @@
+<h2 className="text-base font-semibold leading-7 text-gray-900">New Comment</h2>
+<.simple_form for={@form} phx-change="validate" phx-submit="create_comment">
+  <.input type="textarea" field={@form[:body]} label="Body" />
+  <:actions>
+    <.button>Save</.button>
+  </:actions>
+</.simple_form>
