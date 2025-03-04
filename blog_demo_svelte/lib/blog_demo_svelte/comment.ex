@@ -4,6 +4,7 @@ defmodule BlogDemoSvelte.Comment do
 
   alias BlogDemoSvelte.Post
 
+  @derive {Jason.Encoder, only: [:id, :author, :body]}
   schema "comments" do
     field :author, :string
     field :body, :string

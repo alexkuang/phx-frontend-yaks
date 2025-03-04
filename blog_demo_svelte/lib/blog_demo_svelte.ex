@@ -14,7 +14,9 @@ defmodule BlogDemoSvelte do
   import Ecto.Query, warn: false
 
   def list_posts() do
-    Repo.all(Post)
+    Post
+    |> preload(:comments)
+    |> Repo.all()
   end
 
   def create_post(attrs) do

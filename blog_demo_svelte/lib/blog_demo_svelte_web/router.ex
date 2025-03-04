@@ -24,6 +24,8 @@ defmodule BlogDemoSvelteWeb.Router do
 
     live "/posts/:post_id/comments", CommentsLive.Index, :index
     live "/posts/:post_id/comments/new", CommentsLive.Form, :new
+
+    live "/posts/:post_id/comments2", CommentsLive.Index2, :index2
   end
 
   # Other scopes may use custom stacks.
