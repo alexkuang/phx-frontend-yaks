@@ -1,5 +1,6 @@
 <script>
-  import {preventDefault} from "svelte/legacy"
+  import { preventDefault } from "svelte/legacy";
+  import Button from "./Button.svelte";
 
   let { live, formErrors } = $props();
 
@@ -55,11 +56,6 @@
   </div>
 
   <div class="mt-12 flex items-center">
-    <button
-      type="submit"
-      class="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-    >
-      Submit
-    </button>
+    <Button type="submit" text="Submit" />
   </div>
 </form>

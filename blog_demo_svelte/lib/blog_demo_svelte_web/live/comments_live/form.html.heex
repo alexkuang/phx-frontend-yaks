@@ -2,6 +2,6 @@
 <.simple_form for={@form} phx-change="validate" phx-submit="create_comment">
   <.input type="textarea" field={@form[:body]} label="Body" />
   <:actions>
-    <.button>Submit</.button>
+    <.Button text="Submit" />
   </:actions>
 </.simple_form>
