@@ -39,5 +39,16 @@ defmodule BlogDemoSvelte do
     %Comment{post_id: post_id}
     |> Comment.changeset(attrs)
     |> Repo.insert()
+    |> tap(fn
+      {:ok, comment} ->
+        Phoenix.PubSub.broadcast(
+          BlogDemoSvelte.PubSub,
+          "post:#{post_id}",
+          {:new_comment, comment}
+        )
+
+      {:error, _} ->
+        nil
+    end)
   end
 end
